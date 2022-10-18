@@ -1,0 +1,33 @@
+<%-include('../../include/head.ejs', { pageTitle: 'SIGN UP' })%>
+<!-- styles -->
+<link rel="stylesheet" href="/styles/auth.css">
+<link rel="stylesheet" href="/styles/forms.css">
+
+</head>
+
+<body>
+	<header>
+		<%-include('../../include/header.ejs')%>
+	</header>
+
+	<main>
+		<h1>Log In</h1>
+		<form action="/login" method="POST">
+			<input type="hiddle" name="_csrf" value="<%= locals.csrfToken %>">
+			<p>
+				<label for="userEmail">Email</label>
+				<input type="email" name="userEmail" id="userEmail" required>
+			</p>
+			<p>
+				<label for="userPassword">Password</label>
+				<input type="password" name="userPassword" id="userPassword" minlength="8" required>
+			</p>
+			<button class="btn">Login Account</button>
+			<p id="switchForm">
+				<a href="/signup">Create a new account!</a>
+			</p>
+		</form>
+	</main>
+
+
+<%-include('../../include/footer.ejs')%>

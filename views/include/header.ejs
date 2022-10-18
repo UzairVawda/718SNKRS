@@ -1,0 +1,22 @@
+<header>
+	<div><a href="/">WDE</a></div>
+	<nav>
+		<ul>
+			<% if (locals.isAuth) { %>
+				<li>
+					<form action="/signout" method="POST">
+						<input type="hiddle" name="_csrf" value="<%= locals.csrfToken %>">
+						<button>logout</button>
+					</form>
+				</li>
+			<% } else { %>
+			<li>
+				<button><a href="/login">signin</a></button>
+			</li>
+			<li>
+				<button><a href="/signup">signup</a></button>
+			</li>
+			<% } %>
+		</ul>
+	</nav>
+</header>

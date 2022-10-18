@@ -1,0 +1,54 @@
+<%-include('../../include/head.ejs', { pageTitle: 'SIGN UP' })%>
+<!-- styles -->
+<link rel="stylesheet" href="/styles/auth.css">
+<link rel="stylesheet" href="/styles/forms.css">
+
+</head>
+
+<body>
+	<header>
+		<%-include('../../include/header.ejs')%>
+	</header>
+
+	<main>
+		<h1>NEW ACCOUNT</h1>
+		<form action="/signup" method="POST">
+			<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+			<p>
+				<label for="userEmail">Email</label>
+				<input type="email" name="userEmail" id="userEmail" required>
+			</p>
+			<p>
+				<label for="userConfrimEmail">Confrim Email</label>
+				<input type="email" name="userConfrimEmail" id="userConfrimEmail" required>
+			</p>
+			<p>
+				<label for="userPassword">Password</label>
+				<input type="password" name="userPassword" id="userPassword" minlength="8" required>
+			</p>
+			<hr>
+			<p>
+				<label for="userName">Full Name</label>
+				<input type="text" name="userName" id="userName" required>
+			</p>
+			<p>
+				<label for="userStreet">Street</label>
+				<input type="text" name="userStreet" id="userStreet" required>
+			</p>
+			<p>
+				<label for="userPostal">Postal Code</label>
+				<input type="text" name="userPostal" id="userPostal" minlength="5" maxlength="5" required>
+			</p>
+			<p>
+				<label for="userCity">City</label>
+				<input type="text" name="userCity" id="userCity" required>
+			</p>
+			<button class="btn">Create Account</button>
+			<p id="switchForm">
+				<a href="/login">Login Instead</a>
+			</p>
+		</form>
+	</main>
+
+
+<%-include('../../include/footer.ejs')%>
