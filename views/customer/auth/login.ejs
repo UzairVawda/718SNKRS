@@ -12,15 +12,21 @@
 
 	<main>
 		<h1>Log In</h1>
+		<% if (data.error) { %>
+			<section class="alert">
+			 <h2>Invalid input</h2>
+			 <p><%= data.error %></p>
+			</section>
+		 <% } %>
 		<form action="/login" method="POST">
-			<input type="hiddle" name="_csrf" value="<%= locals.csrfToken %>">
+			<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
 			<p>
 				<label for="userEmail">Email</label>
-				<input type="email" name="userEmail" id="userEmail" required>
+				<input type="email" name="userEmail" id="userEmail" value="<%= data.email %> " required>
 			</p>
 			<p>
 				<label for="userPassword">Password</label>
-				<input type="password" name="userPassword" id="userPassword" minlength="8" required>
+				<input type="password" name="userPassword" id="userPassword" minlength="8" value="<%= data.password %>" required>
 			</p>
 			<button class="btn">Login Account</button>
 			<p id="switchForm">

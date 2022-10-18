@@ -1,0 +1,27 @@
+<ul id="navitems">
+	<% if (!locals.isAdmin) { %>
+		<li><a href="/">Shop</a></li>
+		<li><a href="/cart">Cart</a></li>
+	<% } %>
+
+	<% if (locals.isAuth && !locals.isAdmin) { %>
+		<li><a href="/order">Orders</a></li>
+	<% } %> 
+	<% if (locals.isAdmin && locals.isAuth) { %>
+		<li><a href="/manage/products">Manage Products</a></li>
+		<li><a href="/manage/orders">Manage orders</a></li>
+
+	<% } %> 
+	<% if (locals.isAuth) { %>
+		<li>
+			<form action="/signout" method="POST">
+				<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>" />
+				<button>logout</button>
+			</form>
+		</li>
+	<% } %>
+	<% if (!locals.isAuth) { %>
+		<li><a href="/login">signin</a></li>
+		<li><a href="/signup">signup</a></li>
+	<% } %>
+</ul>

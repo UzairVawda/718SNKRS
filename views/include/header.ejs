@@ -1,22 +1,15 @@
-<header>
-	<div><a href="/">WDE</a></div>
-	<nav>
-		<ul>
-			<% if (locals.isAuth) { %>
-				<li>
-					<form action="/signout" method="POST">
-						<input type="hiddle" name="_csrf" value="<%= locals.csrfToken %>">
-						<button>logout</button>
-					</form>
-				</li>
-			<% } else { %>
-			<li>
-				<button><a href="/login">signin</a></button>
-			</li>
-			<li>
-				<button><a href="/signup">signup</a></button>
-			</li>
-			<% } %>
-		</ul>
-	</nav>
+<header id="mainHeader">
+  <div id="logo"><a href="/">WDE</a></div>
+  <nav>
+		<%-include('../include/navItems.ejs') %> 
+  </nav>
+	<button id="mobileMenu">
+		<span></span><span></span><span></span>
+	</button>
 </header>
+
+<aside>
+	<nav>
+		<%-include('../include/navItems.ejs') %> 
+	</nav>
+</aside>

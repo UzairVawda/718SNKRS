@@ -12,36 +12,42 @@
 
 	<main>
 		<h1>NEW ACCOUNT</h1>
+		<% if (data.error) { %>
+		 <section class="alert">
+			<h2>Invalid input</h2>
+			<p><%= data.error %></p>
+		 </section>
+		<% } %>
 		<form action="/signup" method="POST">
 			<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
 			<p>
 				<label for="userEmail">Email</label>
-				<input type="email" name="userEmail" id="userEmail" required>
+				<input type="email" name="userEmail" id="userEmail" value="<%= data.email %>" required>
 			</p>
 			<p>
 				<label for="userConfrimEmail">Confrim Email</label>
-				<input type="email" name="userConfrimEmail" id="userConfrimEmail" required>
+				<input type="email" name="userConfrimEmail" id="userConfrimEmail" value="<%= data.confrimEmail %>" required>
 			</p>
 			<p>
 				<label for="userPassword">Password</label>
-				<input type="password" name="userPassword" id="userPassword" minlength="8" required>
+				<input type="password" name="userPassword" id="userPassword" minlength="8" value="<%= data.password %>" required>
 			</p>
 			<hr>
 			<p>
 				<label for="userName">Full Name</label>
-				<input type="text" name="userName" id="userName" required>
+				<input type="text" name="userName" id="userName" value="<%= data.name %>" required>
 			</p>
 			<p>
 				<label for="userStreet">Street</label>
-				<input type="text" name="userStreet" id="userStreet" required>
+				<input type="text" name="userStreet" id="userStreet" value="<%= data.street %>" required>
 			</p>
 			<p>
 				<label for="userPostal">Postal Code</label>
-				<input type="text" name="userPostal" id="userPostal" minlength="5" maxlength="5" required>
+				<input type="text" name="userPostal" id="userPostal" minlength="5" maxlength="5" value="<%= data.postal %>" required>
 			</p>
 			<p>
 				<label for="userCity">City</label>
-				<input type="text" name="userCity" id="userCity" required>
+				<input type="text" name="userCity" id="userCity" value="<%= data.city %>" required>
 			</p>
 			<button class="btn">Create Account</button>
 			<p id="switchForm">

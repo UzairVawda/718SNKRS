@@ -18,9 +18,15 @@ class User {
 	}
 
 	checkMatchingPassword (hassPass) {
-		console.log('hasspass: ' + hassPass)
-		console.log('this.password: ' + this.password)
 		return bcrypt.compare(this.password, hassPass)
+	}
+
+	async exisitsAlready() {
+		const existingUser = await this.getUserWithSameEmail()
+		if (existingUser) {
+			return true
+		} 
+		return false
 	}
 
 	async signup () {
