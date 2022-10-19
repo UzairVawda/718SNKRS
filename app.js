@@ -16,7 +16,8 @@ const db = require("./data/database");
 //ROUTES
 const baseRouter = require("./routes/base.routes");
 const authRouter = require("./routes/auth.routes");
-const productsRouter = require("./routes/products.router");
+const productsRouter = require("./routes/products.routes");
+const adminRouter = require("./routes/admin.routes");
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use(checkAuthMiddle);
 app.use(baseRouter);
 app.use(authRouter);
 app.use(productsRouter);
+app.use('/admin', adminRouter)
 
 app.use(errorMiddle); // error route
 

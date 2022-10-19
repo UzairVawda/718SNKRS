@@ -1,0 +1,43 @@
+<%-include('../../include/head.ejs', { pageTitle: 'Add New Products' })%>
+<link rel="stylesheet" href="/styles/forms.css">
+
+</head>
+
+<body>
+	<header>
+		<%-include('../../include/header.ejs')%>
+	</header>
+
+	<main>
+		<h1>Add New Project</h1>
+		<form action="" method="POST">
+			<p>
+				<label for="productTitle">Title</label>
+				<input type="text" name="productTitle" id="productTitle" required>
+			</p>
+			<p>
+				<label for="productImage">Product Image</label>
+				<input type="file" name="productImage" id="productImage" accept="image/png, image/jpg" required>
+			</p>
+			<p>
+				<label for="productSummary">Product Summary</label>
+				<input type="text" name="productSummary" id="productSummary" maxlength="250">
+			</p>
+			<p>
+				<label for="productPrice">Product Price</label>
+				<input type="number" name="productPrice" id="productPrice" min="0.01" step="0.01" required>
+			</p>
+			<p>
+				<label for="productDescription">Product Description</label>
+				<textarea name="productDescription" id="productDescription" rows="7" required></textarea>
+			</p>
+
+			<p>
+				<button type="reset" class="btn btn-alt">Reset</button>
+				<button type="btn" class="btn">Save</button>
+			</p>
+		</form>
+	</main>
+
+
+<%-include('../../include/footer.ejs')%>
