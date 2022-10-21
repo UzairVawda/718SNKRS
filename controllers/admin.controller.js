@@ -31,9 +31,21 @@ async function createNewProduct(req, res, next) {
   res.redirect("/admin/products");
 }
 
+async function getSpecificProduct(req, res, next) {
+  try {
+    const product = await Product.getOneProduct(req.params.id);
+    console.log(product)
+		res.render("admin/products/updateProduct", { product: product });
+  } catch (error) {
+    next(error);
+    return;
+  }
+}
+
 module.exports = {
   getProducts: getProducts,
   getNewProduct: getNewProduct,
   getAllOrders: getAllOrders,
   createNewProduct: createNewProduct,
+  getSpecificProduct: getSpecificProduct
 };

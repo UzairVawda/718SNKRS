@@ -1,3 +1,4 @@
+const mongodb = require('mongodb');
 const db = require("../data/database");
 
 class Product {
@@ -35,6 +36,20 @@ class Product {
       return new Product(productDocument);
     });
   }
+
+	static async getOneProduct(id) {
+		let prodId;
+    try {
+      prodId = new mongodb.ObjectId(id);
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }
+		const product = await db.getDB().collection('products').findOne({"_id": prodId});
+
+		return new Product(product);
+
+	}
 }
 
 module.exports = Product
