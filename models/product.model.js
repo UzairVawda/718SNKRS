@@ -46,10 +46,9 @@ class Product {
       throw error;
     }
 		const product = await db.getDB().collection('products').findOne({"_id": prodId});
-
 		return new Product(product);
-
 	}
+	
 }
 
 module.exports = Product

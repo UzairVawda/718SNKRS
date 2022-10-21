@@ -31,7 +31,18 @@ async function createNewProduct(req, res, next) {
   res.redirect("/admin/products");
 }
 
-async function getSpecificProduct(req, res, next) {
+async function updateSpecificProduct(req, res, next) {
+  try {
+    const product = await Product.getOneProduct(req.params.id);
+    console.log(product)
+		res.render("admin/products/updateProduct", { product: product });
+  } catch (error) {
+    next(error);
+    return;
+  }
+}
+
+async function updateProduct(req, res, next) {
   try {
     const product = await Product.getOneProduct(req.params.id);
     console.log(product)
@@ -47,5 +58,6 @@ module.exports = {
   getNewProduct: getNewProduct,
   getAllOrders: getAllOrders,
   createNewProduct: createNewProduct,
-  getSpecificProduct: getSpecificProduct
+  updateSpecificProduct: updateSpecificProduct,
+  updateProduct: updateProduct
 };
