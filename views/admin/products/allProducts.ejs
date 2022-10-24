@@ -1,5 +1,5 @@
 <%-include('../../include/head.ejs', { pageTitle: 'All Products' })%>
-
+<link rel="stylesheet" href="/styles/products.css">
 </head>
 
 <body>
@@ -9,13 +9,24 @@
 
 	<main>
 		<h1>718 Admin</h1>
+		<% if (allProducts.length<=0) { %>
 		<section>
 			<h2>Add Item</h2>
 			<a href="/admin/products/new" class="btn">Add Product</a>
 		</section>
+		<% } %>
 		<section>
-			<p>list of products</p>
+			<% if (allProducts.length>0) { %>
+				<ul id="productGrid">
+					<% for( const product of allProducts) { %>
+						<li>
+							<%-include('../../include/productItem.ejs', {data: product})%>
+						</li>
+					<% } %>
+				</ul>
+			<% } %>
 		</section>
+		<a href="/admin/products/new" class="btn">Add Product</a>
 	</main>
 
 
