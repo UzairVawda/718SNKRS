@@ -9,34 +9,8 @@
 	</header>
 
 	<main>
-		<h1>Add New Project</h1>
-		<form action="/admin/products/new?_csrf=<%= locals.csrfToken %> " method="POST" enctype="multipart/form-data" >
-			<p>
-				<label for="productTitle">Title</label>
-				<input type="text" name="productTitle" id="productTitle" required>
-			</p>
-			<p>
-				<label for="productImage">Product Image</label>
-				<input type="file" name="productImage" id="productImage" accept="image/png, image/jpg" required>
-			</p>
-			<p>
-				<label for="productSummary">Product Summary</label>
-				<input type="text" name="productSummary" id="productSummary" maxlength="250">
-			</p>
-			<p>
-				<label for="productPrice">Product Price</label>
-				<input type="number" name="productPrice" id="productPrice" min="0.01" step="0.01" required>
-			</p>
-			<p>
-				<label for="productDescription">Product Description</label>
-				<textarea name="productDescription" id="productDescription" rows="7" required></textarea>
-			</p>
-
-			<p>
-				<button type="reset" class="btn btn-alt">Reset</button>
-				<button type="btn" class="btn">Save</button>
-			</p>
-		</form>
+		<h1>UPDATE Project</h1>
+		<%- include('../../include/productForm.ejs', {submitPath: '/admin/products/new', imageRequired: true}) %> 
 	</main>
 
 

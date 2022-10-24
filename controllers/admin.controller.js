@@ -3,7 +3,8 @@ const Product = require("../models/product.model");
 async function getProducts(req, res, next) {
   try {
     const allProducts = await Product.getAllProducts();
-		res.render("admin/products/allProducts", { allProducts: allProducts });
+    console.log(allProducts)
+		res.render("admin/products/allProducts", { allProducts: allProducts});
   } catch (error) {
     next(error);
     return;
@@ -11,7 +12,13 @@ async function getProducts(req, res, next) {
 }
 
 function getNewProduct(req, res) {
-  res.render("admin/products/newProduct");
+  const emptyProduct = {
+    title: '',
+    summary: '',
+    price: '',
+    description: ''
+  }
+  res.render("admin/products/newProduct", { product: emptyProduct  });
 }
 
 function getAllOrders(req, res) {
@@ -31,10 +38,9 @@ async function createNewProduct(req, res, next) {
   res.redirect("/admin/products");
 }
 
-async function updateSpecificProduct(req, res, next) {
+async function getUpdateProduct(req, res, next) {
   try {
     const product = await Product.getOneProduct(req.params.id);
-    console.log(product)
 		res.render("admin/products/updateProduct", { product: product });
   } catch (error) {
     next(error);
@@ -43,14 +49,18 @@ async function updateSpecificProduct(req, res, next) {
 }
 
 async function updateProduct(req, res, next) {
+  const product = new Product({...req.body, _id: req.params.id})
+  if (req.file) {
+    product.replaceImage(req.file.filename)
+  }
+
   try {
-    const product = await Product.getOneProduct(req.params.id);
-    console.log(product)
-		res.render("admin/products/updateProduct", { product: product });
+    await product.saveProduct();
   } catch (error) {
     next(error);
     return;
   }
+  res.redirect("/admin/products");
 }
 
 module.exports = {
@@ -58,6 +68,6 @@ module.exports = {
   getNewProduct: getNewProduct,
   getAllOrders: getAllOrders,
   createNewProduct: createNewProduct,
-  updateSpecificProduct: updateSpecificProduct,
+  getUpdateProduct: getUpdateProduct,
   updateProduct: updateProduct
 };
