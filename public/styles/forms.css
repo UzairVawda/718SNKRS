@@ -18,3 +18,20 @@ textarea {
 	border: none;
 	width: 90%;
 }
+
+#imageUploadControl {
+	display: flex;
+	align-items: center;
+}
+
+#imageUploadControl input {
+	max-width: 15rem;
+}
+
+#imageUploadControl img {
+	display: none;
+	width: 5rem;
+	height: 5rem;
+	object-fit: cover;
+	border-radius: var(--border-radius-medium);
+}
