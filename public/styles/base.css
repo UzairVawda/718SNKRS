@@ -79,13 +79,13 @@ a {
 	border-color: var(--color-primary-800);
 }
 
-.btn-alt {
+.btnAlt {
   background-color: transparent;
   color: var(--color-primary-500);
 }
 
-.btn-alt:hover,
-.btn-alt:active {
+.btnAlt:hover,
+.btnAlt:active {
 	background-color: var(--color-primary-500-bg);
   border-color: var(--color-gray-50);
 }

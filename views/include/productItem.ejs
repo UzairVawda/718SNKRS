@@ -3,8 +3,8 @@
   <div class="productItemContent">
     <h2><%= data.title %></h2>
     <div class="productItemActions">
-      <a class="btn btn-alt" href="/admin/products/update/<%= data.id %>">View & Edit</a>
-      <button class="btn btn-alt">Delete</button>
+      <a class="btn btnAlt" href="/admin/products/update/<%= data.id %>">View & Edit</a>
+      <button class="btn btnAlt" data-productid="<%=data.id%>" data-csrf="<%= locals.csrfToken %>">Delete</button>
     </div>
   </div>
 </article> 
