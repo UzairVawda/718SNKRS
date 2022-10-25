@@ -8,9 +8,7 @@ function updateImagePreview() {
 		return
 	}
 	const pickedFile = files[0];
-	console.log(pickedFile)
 	const srcURL = URL.createObjectURL(pickedFile);
-	console.log(srcURL)
 	imagePreview.src = srcURL
 	imagePreview.style.display = 'block';
 }

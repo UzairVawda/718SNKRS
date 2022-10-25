@@ -3,7 +3,6 @@ const Product = require("../models/product.model");
 async function getProducts(req, res, next) {
   try {
     const allProducts = await Product.getAllProducts();
-    console.log(allProducts)
 		res.render("admin/products/allProducts", { allProducts: allProducts});
   } catch (error) {
     next(error);
