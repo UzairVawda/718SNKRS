@@ -9,12 +9,15 @@
 
 	<main>
 		<h1>718 Admin</h1>
-		<% if (allProducts.length<=0) { %>
 		<section>
-			<h2>Add Item</h2>
+			<% if (allProducts.length<=0) { %>
+				<h2>No Items Currently! Add One:</h2>
+				<% } %>
+			<% if (allProducts.length>0) { %>
+				<h2>Add Another Product:</h2>
+			<% } %>
 			<a href="/admin/products/new" class="btn">Add Product</a>
 		</section>
-		<% } %>
 		<section>
 			<% if (allProducts.length>0) { %>
 				<ul id="productGrid">
@@ -26,7 +29,6 @@
 				</ul>
 			<% } %>
 		</section>
-		<a href="/admin/products/new" class="btn">Add Product</a>
 	</main>
 
 

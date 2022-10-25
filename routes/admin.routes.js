@@ -16,4 +16,6 @@ router.get("/products/update/:id", adminController.getUpdateProduct);
 
 router.post("/products/update/:id", imageUploadMiddle, adminController.updateProduct);
 
+router.delete("/products/delete/:id", adminController.deleteProduct);
+
 module.exports = router;

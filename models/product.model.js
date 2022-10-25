@@ -73,13 +73,20 @@ class Product {
       await db.getDB().collection("products").insertOne(product);
     }
   }
-
+  async remove() {
+    let mongoID;
+    try {
+      mongoID = new mongodb.ObjectId(this.id);
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }   
+    await db.getDB().collection('products').deleteOne({_id: mongoID})
+  }
 
 	replaceImage(newImage) {
 		this.imageName = newImage
 		this.updateImageData();
-		console.log(this.imagePath)
-		console.log(this.imageUrl)
 	}
 }
 
