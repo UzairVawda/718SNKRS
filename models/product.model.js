@@ -12,7 +12,6 @@ class Product {
     if (productData._id) {
       this.id = productData._id.toString();
     }
-    // console.log(productData)
   }
 
 	updateImageData() {
