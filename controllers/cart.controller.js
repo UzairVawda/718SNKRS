@@ -13,7 +13,6 @@ async function addCartItem(req, res) {
   res.status(201).json({
 		message: "Item Added",
 		totalItems: res.locals.cart.totalQuantity,
-		totalPrice: res.locals.cart.totalPrice,
 	});
 }
 

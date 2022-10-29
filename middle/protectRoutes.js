@@ -1,5 +1,5 @@
 function proectRoutes(req, res, next) {
-  if (!res.locals.isAuth) {
+  if (!res.locals.isAuth && !req.path.startsWith('/cart')) {
     return res.redirect("/401");
   }
 
