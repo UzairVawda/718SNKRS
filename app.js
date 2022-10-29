@@ -9,6 +9,7 @@ const createSessionConfig = require('./config/session')
 const csrfMiddle = require('./middle/csrf')
 const errorMiddle = require('./middle/error')
 const checkAuthMiddle = require('./middle/checkAuth')
+const protectRoutesMiddle = require('./middle/protectRoutes')
 
 //DATABASE
 const db = require("./data/database");
@@ -40,6 +41,7 @@ app.use(checkAuthMiddle);
 app.use(baseRouter);
 app.use(authRouter);
 app.use(productsRouter);
+app.use(protectRoutesMiddle)
 app.use('/admin', adminRouter)
 
 app.use(errorMiddle); // error route
