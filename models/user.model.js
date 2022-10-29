@@ -10,7 +10,6 @@ class User {
 			postal: postal,
 			city: city
 		}
-		console.log('from construct: ' + this.email, this.password)
 	}
 	
 	getUserWithSameEmail () {
@@ -37,7 +36,6 @@ class User {
 			name: this.name,
 			address: this.address
 		})
-		// const exisitng = await db.getDB('users').findOne({emai: })
 	}
 }
 
