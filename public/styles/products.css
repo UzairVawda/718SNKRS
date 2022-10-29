@@ -1,5 +1,5 @@
 
-#productsGrid {
+#productGrid {
   margin: var(--space-8) auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));

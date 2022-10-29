@@ -10,6 +10,7 @@ const csrfMiddle = require("./middle/csrf");
 const errorMiddle = require("./middle/error");
 const checkAuthMiddle = require("./middle/checkAuth");
 const protectRoutesMiddle = require("./middle/protectRoutes");
+const cartMiddle = require("./middle/cart");
 
 //DATABASE
 const db = require("./data/database");
@@ -33,8 +34,9 @@ const sessionConfig = createSessionConfig();
 
 app.use(expressSession(sessionConfig));
 app.use(csrf());
-app.use(csrfMiddle);
 
+app.use(cartMiddle);
+app.use(csrfMiddle);
 app.use(checkAuthMiddle);
 
 // USE ROUTER
