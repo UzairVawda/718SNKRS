@@ -8,16 +8,16 @@ class Product {
     this.price = +productData.productPrice;
     this.description = productData.productDescription;
     this.imageName = productData.productImage;
-		this.updateImageData();
+    this.updateImageData();
     if (productData._id) {
       this.id = productData._id.toString();
     }
   }
 
-	updateImageData() {
-		this.imagePath = `productData/images/${this.imageName}`;
+  updateImageData() {
+    this.imagePath = `productData/images/${this.imageName}`;
     this.imageUrl = `/products/assets/images/${this.imageName}`;
-	}
+  }
 
   static async getAllProducts() {
     const products = await db.getDB().collection("products").find().toArray();
@@ -61,9 +61,9 @@ class Product {
 
     if (this.id) {
       const mongoObjID = new mongodb.ObjectId(this.id);
-			if (!this.imageName) {
-				delete product.productImage;
-			}
+      if (!this.imageName) {
+        delete product.productImage;
+      }
       await db
         .getDB()
         .collection("products")
@@ -79,14 +79,14 @@ class Product {
     } catch (error) {
       error.code = 404;
       throw error;
-    }   
-    await db.getDB().collection('products').deleteOne({_id: mongoID})
+    }
+    await db.getDB().collection("products").deleteOne({ _id: mongoID });
   }
 
-	replaceImage(newImage) {
-		this.imageName = newImage
-		this.updateImageData();
-	}
+  replaceImage(newImage) {
+    this.imageName = newImage;
+    this.updateImageData();
+  }
 }
 
 module.exports = Product;

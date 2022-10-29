@@ -3,10 +3,9 @@ function isEmpty(content) {
 }
 
 function userCredCheck(email, password) {
-	return email &&
-	email.includes("@") &&
-	password &&
-	password.trim().length >= 8
+  return (
+    email && email.includes("@") && password && password.trim().length >= 8
+  );
 }
 
 function userDetailsValid(email, password, name, street, postal, city) {
@@ -20,10 +19,10 @@ function userDetailsValid(email, password, name, street, postal, city) {
 }
 
 function checkBothEmails(email, confirmEmail) {
-	return email === confirmEmail
+  return email === confirmEmail;
 }
 
 module.exports = {
   userDetailsValid: userDetailsValid,
-	checkBothEmails: checkBothEmails
+  checkBothEmails: checkBothEmails,
 };

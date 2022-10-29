@@ -4,21 +4,21 @@ const sessionUtil = require("../util/sessionFlash.util");
 const User = require("../models/user.model");
 
 function getSignup(req, res) {
-  let sessionData = sessionUtil.fromSession(req)
+  let sessionData = sessionUtil.fromSession(req);
   if (!sessionData) {
-    sessionData = { 
-      email: '',
-      confrimEmail: '',
-      password: '',
-      name: '',
-      street: '',
-      postal: '',
-      city: '',
-    }
+    sessionData = {
+      email: "",
+      confrimEmail: "",
+      password: "",
+      name: "",
+      street: "",
+      postal: "",
+      city: "",
+    };
   }
   res.render("customer/auth/signup", {
     title: "Sign Up",
-    data: sessionData
+    data: sessionData,
   });
 }
 
@@ -89,16 +89,16 @@ async function signup(req, res, next) {
 }
 
 function getLogin(req, res) {
-  let sessionData = sessionUtil.fromSession(req)
+  let sessionData = sessionUtil.fromSession(req);
   if (!sessionData) {
-    sessionData = { 
-      email: '',
-      password: ''
-    }
+    sessionData = {
+      email: "",
+      password: "",
+    };
   }
   res.render("customer/auth/login", {
     title: "Login",
-    data: sessionData
+    data: sessionData,
   });
 }
 

@@ -1,37 +1,36 @@
 form hr {
-	border-color: var(--color-primary-200);
-	margin: var(--space-8);
+  border-color: var(--color-primary-200);
+  margin: var(--space-8);
 }
 
-
 label {
-	color: var(--color-gray-100);
-	display: block; /* take entire line */
-	margin-bottom: var(--space-2);
+  color: var(--color-gray-100);
+  display: block; /* take entire line */
+  margin-bottom: var(--space-2);
 }
 
 input,
 textarea {
-	font: inherit;
-	padding: var(--space-2);
-	border-radius: var(--border-radius-small);
-	border: none;
-	width: 90%;
+  font: inherit;
+  padding: var(--space-2);
+  border-radius: var(--border-radius-small);
+  border: none;
+  width: 90%;
 }
 
 #imageUploadControl {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #imageUploadControl input {
-	max-width: 15rem;
+  max-width: 15rem;
 }
 
 #imageUploadControl img {
-	display: none;
-	width: 5rem;
-	height: 5rem;
-	object-fit: cover;
-	border-radius: var(--border-radius-medium);
+  display: none;
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: var(--border-radius-medium);
 }

@@ -10,11 +10,19 @@ router.get("/products/new", adminController.getNewProduct);
 
 router.get("/products/order", adminController.getAllOrders);
 
-router.post("/products/new", imageUploadMiddle, adminController.createNewProduct);
+router.post(
+  "/products/new",
+  imageUploadMiddle,
+  adminController.createNewProduct
+);
 
 router.get("/products/update/:id", adminController.getUpdateProduct);
 
-router.post("/products/update/:id", imageUploadMiddle, adminController.updateProduct);
+router.post(
+  "/products/update/:id",
+  imageUploadMiddle,
+  adminController.updateProduct
+);
 
 router.delete("/products/delete/:id", adminController.deleteProduct);
 

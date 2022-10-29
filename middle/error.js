@@ -1,9 +1,9 @@
 function handelErrors(error, req, res, next) {
-	console.log(error)
-	if (error.code === 404) {
-		res.status(404).render('shared/404')
-	}
-	res.status(500).render('shared/500')
+  console.log(error);
+  if (error.code === 404) {
+    res.status(404).render("shared/404");
+  }
+  res.status(500).render("shared/500");
 }
 
 module.exports = handelErrors;

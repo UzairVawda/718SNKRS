@@ -79,7 +79,7 @@ main {
 }
 
 #mobileMenu.open {
-	display: flex;
+  display: flex;
 }
 
 #mobileMenu nav {

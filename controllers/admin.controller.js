@@ -3,7 +3,7 @@ const Product = require("../models/product.model");
 async function getProducts(req, res, next) {
   try {
     const allProducts = await Product.getAllProducts();
-		res.render("admin/products/allProducts", { allProducts: allProducts});
+    res.render("admin/products/allProducts", { allProducts: allProducts });
   } catch (error) {
     next(error);
     return;
@@ -12,12 +12,12 @@ async function getProducts(req, res, next) {
 
 function getNewProduct(req, res) {
   const emptyProduct = {
-    title: '',
-    summary: '',
-    price: '',
-    description: ''
-  }
-  res.render("admin/products/newProduct", { product: emptyProduct  });
+    title: "",
+    summary: "",
+    price: "",
+    description: "",
+  };
+  res.render("admin/products/newProduct", { product: emptyProduct });
 }
 
 function getAllOrders(req, res) {
@@ -40,7 +40,7 @@ async function createNewProduct(req, res, next) {
 async function getUpdateProduct(req, res, next) {
   try {
     const product = await Product.getOneProduct(req.params.id);
-		res.render("admin/products/updateProduct", { product: product });
+    res.render("admin/products/updateProduct", { product: product });
   } catch (error) {
     next(error);
     return;
@@ -48,9 +48,9 @@ async function getUpdateProduct(req, res, next) {
 }
 
 async function updateProduct(req, res, next) {
-  const product = new Product({...req.body, _id: req.params.id})
+  const product = new Product({ ...req.body, _id: req.params.id });
   if (req.file) {
-    product.replaceImage(req.file.filename)
+    product.replaceImage(req.file.filename);
   }
 
   try {
@@ -65,14 +65,14 @@ async function updateProduct(req, res, next) {
 async function deleteProduct(req, res, next) {
   let product;
   try {
-    product = await Product.getOneProduct(req.params.id)
+    product = await Product.getOneProduct(req.params.id);
     await product.remove();
-    res.res
+    res.res;
   } catch (error) {
     next(error);
     return;
   }
-  res.json({ message: 'Deleted product!' });
+  res.json({ message: "Deleted product!" });
 }
 
 module.exports = {
@@ -82,5 +82,5 @@ module.exports = {
   createNewProduct: createNewProduct,
   getUpdateProduct: getUpdateProduct,
   updateProduct: updateProduct,
-  deleteProduct: deleteProduct
+  deleteProduct: deleteProduct,
 };
