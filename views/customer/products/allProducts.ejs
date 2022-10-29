@@ -1,4 +1,5 @@
 <%-include('../../include/head.ejs', { pageTitle: 'All Products' })%>
+<link rel="stylesheet" href="/styles/products.css">
 <!-- styles -->
 
 </head>
@@ -9,9 +10,23 @@
 	</header>
 
 	<main>
-		<h1>PRODUCTS</h1>
-		<p></p>
+		<h1>718 Products</h1>
+		<section>
+			<% if (allProducts.length<=0) { %>
+				<h2>No Items Currently! Please wait for the resetock!</h2>
+			<% } %>
+		</section>
+		<section>
+			<% if (allProducts.length>0) { %>
+				<ul id="productGrid">
+					<% for( const product of allProducts) { %>
+						<li>
+							<%-include('../../shared/productItem.ejs', {data: product})%>
+						</li>
+					<% } %>
+				</ul>
+			<% } %>
+		</section>
 	</main>
-
 
 <%-include('../../include/footer.ejs')%>
