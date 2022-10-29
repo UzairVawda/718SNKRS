@@ -9,6 +9,16 @@ async function getAllProducts(req, res) {
 	}
 }
 
+async function getSpecificProduct(req, res) {
+	try {
+		const product = await Product.getOneProduct(req.params.id)		
+		res.render("customer/products/productDetails", {product: product});
+	} catch (error) {
+		next(error);
+	}
+}
+
 module.exports = {
-	getAllProducts: getAllProducts
+	getAllProducts: getAllProducts,
+	getSpecificProduct: getSpecificProduct
 }

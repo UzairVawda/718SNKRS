@@ -1,0 +1,23 @@
+<%- include('../../include/head', { pageTitle: 'All Products' }) %>
+<link rel="stylesheet" href="/styles/products.css">
+<!-- styles -->
+
+</head>
+
+<body>
+	<header>
+		<%-include('../../include/header.ejs')%>
+	</header>
+
+	<main id="productDetails">
+		<header>
+		<img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+		<div id="productInfo">
+			<h1><%= product.title %></h1>
+			<p>$<%= product.price %></p>
+			<button>Add to Cart</button>
+		</div>
+	</header>
+
+	<p id="productDescription"><%= product.description %></p>
+</main>
