@@ -1,0 +1,12 @@
+<li>
+	<article class="cartItem">
+		<div cartItemInfo>
+			<h2><%= data.product.title %> </h2>
+			<p>$<%= data.totalPrice.toFixed(3) %> <span>($<%= (data.product.price.toFixed(3)) %>)</span></p>
+		</div>
+		<div class="cartItemManagement">
+			<input type="number" value="<%= data.quantity %>" name="" id="">
+			<button class="btn btn-alt">Update</button>
+		</div>
+	</article>
+</li>

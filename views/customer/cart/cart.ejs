@@ -1,0 +1,30 @@
+<%-include('../../include/head.ejs', { pageTitle: 'All Products' })%>
+<link rel="stylesheet" href="/styles/cart.css">
+<!-- styles -->
+
+</head>
+
+<body>
+	<header>
+		<%-include('../../include/header.ejs')%>
+	</header>
+
+	<main>
+		<h1>718 CART</h1>
+		<section>
+			<% if (locals.cart.items.length>0) { %>
+				<ul id="cartItems">
+					<% for( const product of locals.cart.items) { %>
+						<%-include('../../include/cartItem.ejs', {data: product})%>
+					<% } %>
+				</ul>
+			<% } %>
+		</section>
+		<section id="cartDetails">
+			<p>Total: $<%= locals.cart.totalPrice.toFixed(3) %></p>
+			<button class="btn">BUY</button>
+		</section>
+	</main>
+
+<%-include('../../include/footer.ejs')%>
+z
