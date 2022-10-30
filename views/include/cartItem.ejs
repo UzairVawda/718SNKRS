@@ -2,11 +2,11 @@
 	<article class="cartItem">
 		<div cartItemInfo>
 			<h2><%= data.product.title %> </h2>
-			<p>$<%= data.totalPrice.toFixed(3) %> <span class="productPrice">($<%= (data.product.price.toFixed(3)) %>)</span></p>
+			<p>$<span class="totalPriceForProduct"><%= data.totalPrice.toFixed(3) %></span> <span class="productPrice">($<%= (data.product.price.toFixed(3)) %>)</span></p>
 		</div>
-		<div class="cartItemManagement">
-			<input type="number" value="<%= data.quantity %>" name="" id="">
+		<form class="cartItemManagement" data-productid="<%= data.product.id %>" data-csrf="<%= locals.csrfToken %>">
+			<input type="number" value="<%= data.quantity %>">
 			<button class="btn btn-alt">Update</button>
-		</div>
+		</form>
 	</article>
 </li>

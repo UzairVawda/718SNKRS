@@ -1,5 +1,6 @@
 <%-include('../../include/head.ejs', { pageTitle: 'All Products' })%>
 <link rel="stylesheet" href="/styles/cart.css">
+<script  src="/scripts/cartItemManagement.js" defer></script>
 <!-- styles -->
 
 </head>
@@ -21,10 +22,9 @@
 			<% } %>
 		</section>
 		<section id="cartDetails">
-			<p>Total: $<%= locals.cart.totalPrice.toFixed(3) %></p>
+			<p>Total: $<span id="cartTotal"><%= locals.cart.totalPrice.toFixed(3) %></span></p>
 			<button class="btn">BUY</button>
 		</section>
 	</main>
 
 <%-include('../../include/footer.ejs')%>
-z

@@ -16,6 +16,7 @@
 		<div id="productInfo">
 			<h1><%= product.title %></h1>
 			<p>$<%= product.price %></p>
+			<p><%= product.id %></p>
 			<button class="btn" data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>">Add to Cart</button>
 		</div>
 	</header>
