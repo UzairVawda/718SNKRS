@@ -1,6 +1,7 @@
 const Product = require("../models/product.model");
 
 function getCart(req, res) {
+  console.log(res.locals.cart)
   res.render("customer/cart/cart");
 }
 
@@ -22,7 +23,7 @@ async function addCartItem(req, res) {
 
 async function updateCartItem(req, res) {
   const cart = res.locals.cart;
-  const updatedData = cart.updateIem(
+  const updatedData = cart.updateItem(
     req.body.productId,
     req.body.updatedQuantity
   );

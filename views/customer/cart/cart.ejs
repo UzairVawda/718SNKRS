@@ -23,7 +23,13 @@
 		</section>
 		<section id="cartDetails">
 			<p>Total: $<span id="cartTotal"><%= locals.cart.totalPrice.toFixed(3) %></span></p>
-			<button class="btn">BUY</button>
+			<% if (locals.isAuth) { %> 
+				<form action="/orders" method="post">
+					<button class="btn">BUY</button>
+				</form>
+			<% } else { %> 
+				<a class="btn" href="/login">Login to purchase!</a>
+			<% } %> 
 		</section>
 	</main>
 
