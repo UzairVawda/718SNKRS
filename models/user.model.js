@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const db = require("../data/database");
+const mongodb = require("mongodb");
+
 class User {
   constructor(email, password, fullName, street, postal, city) {
     this.email = email;
@@ -36,6 +38,20 @@ class User {
       name: this.name,
       address: this.address,
     });
+  }
+
+  static findById(id) {
+    let userID;
+    try {
+      userID = new mongodb.ObjectId(id);
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }
+    return db
+      .getDB()
+      .collection("users")
+      .findOne({ _id: userID }, { projection: { password: 0 } });
   }
 }
 

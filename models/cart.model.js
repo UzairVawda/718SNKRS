@@ -1,6 +1,3 @@
-const mongodb = require("mongodb");
-const db = require("../data/database");
-
 class Cart {
   constructor(items = [], totalQuantity = 0, totalPrice = 0) {
     this.items = items;
@@ -19,7 +16,7 @@ class Cart {
       const item = this.items[i];
       if (item.product.id === product.id) {
         cartItem.quantity = +item.quantity + 1;
-        cartItem.totalPrice = item.totalPrice+ product.price;
+        cartItem.totalPrice = item.totalPrice + product.price;
         this.items[i] = cartItem;
 
         this.totalQuantity++;
@@ -37,10 +34,10 @@ class Cart {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
       if (item.product.id === productId && newQuantity > 0) {
-        const updatedItem = { ...item }
-        const quantityChange = newQuantity - item.quantity
-        updatedItem.quantity = newQuantity
-        updatedItem.totalPrice = newQuantity * item.product.price
+        const updatedItem = { ...item };
+        const quantityChange = newQuantity - item.quantity;
+        updatedItem.quantity = newQuantity;
+        updatedItem.totalPrice = newQuantity * item.product.price;
         this.items[i] = updatedItem;
 
         this.totalQuantity = this.totalQuantity + quantityChange;
@@ -54,7 +51,6 @@ class Cart {
       }
     }
   }
-  
 }
 
 module.exports = Cart;

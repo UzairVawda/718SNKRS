@@ -8,7 +8,7 @@ async function updateCartItemQuantity(event) {
   const productId = form.dataset.productid;
   const csrfToken = form.dataset.csrf;
   const quantity = form.firstElementChild.value;
-	let res;
+  let res;
   try {
     res = await fetch("/cart/items/update", {
       method: "PATCH",
@@ -32,21 +32,20 @@ async function updateCartItemQuantity(event) {
   }
 
   const resData = await res.json();
-  console.log(resData)
-	if (resData.updatedCartDate.newTotalQuantity === 0) {
-		form.parentElement.parentElement.remove();
-	} else {
-		const totalProductPrice = form.parentElement.querySelector(
-			".totalPriceForProduct"
-		);
-		totalProductPrice.textContent = resData.updatedCartDate.updatedItemPrice.toFixed(2);
-	}
-  cartBadge.textContent = resData.updatedCartDate.newTotalQuantity
+  console.log(resData);
+  if (resData.updatedCartDate.newTotalQuantity === 0) {
+    form.parentElement.parentElement.remove();
+  } else {
+    const totalProductPrice = form.parentElement.querySelector(
+      ".totalPriceForProduct"
+    );
+    totalProductPrice.textContent =
+      resData.updatedCartDate.updatedItemPrice.toFixed(2);
+  }
+  cartBadge.textContent = resData.updatedCartDate.newTotalQuantity;
   cartTotal.textContent = resData.updatedCartDate.newTotalPrice.toFixed(2);
 }
 
 for (const updateBtn of updateItemQuantityBtns) {
   updateBtn.addEventListener("submit", updateCartItemQuantity);
 }
-
-

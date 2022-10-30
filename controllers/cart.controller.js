@@ -1,7 +1,6 @@
 const Product = require("../models/product.model");
 
 function getCart(req, res) {
-  console.log(res.locals.cart)
   res.render("customer/cart/cart");
 }
 
