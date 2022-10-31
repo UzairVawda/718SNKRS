@@ -23,7 +23,7 @@
 				<ul id="productGrid">
 					<% for( const product of allProducts) { %>
 						<li>
-							<%-include('../../shared/productItem.ejs', {data: product})%>
+							<%-include('../../include/productItem.ejs', {data: product})%>
 						</li>
 					<% } %>
 				</ul>

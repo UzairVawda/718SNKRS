@@ -1,15 +1,15 @@
-const allUpdateForms = document.querySelectorAll('.cartItemManagement');
+const allUpdateForms = document.querySelectorAll(".cartItemManagement");
 async function updateOrder(event) {
-	event.preventDefault();
+  event.preventDefault();
   const form = event.target;
-  
-  const formData = new FormData(form);
-  const newStatus = formData.get('status');
-  const orderId = formData.get('orderid');
-  const csrfToken = formData.get('_csrf');
 
-	let res
-	try {
+  const formData = new FormData(form);
+  const newStatus = formData.get("status");
+  const orderId = formData.get("orderid");
+  const csrfToken = formData.get("_csrf");
+
+  let res;
+  try {
     res = await fetch(`/admin/orders/${orderId}`, {
       method: "PATCH",
       body: JSON.stringify({
@@ -25,16 +25,16 @@ async function updateOrder(event) {
     return;
   }
 
-	if (!res.ok) {
-    alert('Something went wrong - could not update order status.');
+  if (!res.ok) {
+    alert("Something went wrong - could not update order status.");
     return;
-	}
+  }
 
-	const responseData = await res.json();
-  form.parentElement.parentElement.querySelector('.badge').textContent =
+  const responseData = await res.json();
+  form.parentElement.parentElement.querySelector(".badge").textContent =
     responseData.newStatus.toUpperCase();
 }
 
 for (const updateFrom of allUpdateForms) {
-  updateFrom.addEventListener('submit', updateOrder);
+  updateFrom.addEventListener("submit", updateOrder);
 }

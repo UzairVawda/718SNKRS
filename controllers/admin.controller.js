@@ -91,7 +91,6 @@ async function updateOrder(req, res, next) {
   const orderId = req.params.id;
   const newStatus = req.body.newStatus;
   try {
-    console.log(orderId)
     const order = await Order.findByOrderId(orderId);
     order.status = newStatus;
     await order.save();

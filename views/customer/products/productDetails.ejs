@@ -1,4 +1,5 @@
-<%- include('../../include/head', { pageTitle: 'All Products' }) %>
+<%- include('../../include/head', { pageTitle: product.title }) %>
+<%-include('../../include/head.ejs', { pageTitle: 'Sneakers - 718SNKRS' })%>
 <link rel="stylesheet" href="/styles/products.css">
 <script  src="/scripts/cartManagement.js" defer></script>
 <!-- styles -->
@@ -12,16 +13,18 @@
 
 	<main id="productDetails">
 		<header>
-		<img src="<%= product.imageUrl %>" alt="<%= product.title %>">
-		<div id="productInfo">
-			<h1><%= product.title %></h1>
-			<p>$<%= product.price %></p>
-			<p><%= product.id %></p>
-			<button class="btn" data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>">Add to Cart</button>
-		</div>
-	</header>
+			<img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+			<div id="productInfo">
+				<h1><%= product.title %></h1>
+				<p>$<%= product.price %></p>
+				<p><%= product.id %></p>
+				<button class="btn" data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>">Add to Cart</button>
+			</div>
+		</header>
 
-	<p id="productDescription">
-		<%= product.description %>
-	</p>
-</main>
+		<p id="productDescription">
+			<%= product.description %>
+		</p>
+	</main>
+
+<%-include('../../include/footer.ejs')%>

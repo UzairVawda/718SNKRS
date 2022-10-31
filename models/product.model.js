@@ -72,6 +72,7 @@ class Product {
       await db.getDB().collection("products").insertOne(product);
     }
   }
+  
   async remove() {
     let mongoID;
     try {
@@ -89,13 +90,13 @@ class Product {
   }
 
   static async findMultiple(ids) {
-    const productIds = ids.map(function(id) {
+    const productIds = ids.map(function (id) {
       return new mongodb.ObjectId(id);
-    })
-    
+    });
+
     const products = await db
       .getDB()
-      .collection('products')
+      .collection("products")
       .find({ _id: { $in: productIds } })
       .toArray();
 

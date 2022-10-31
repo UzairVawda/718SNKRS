@@ -1,4 +1,4 @@
-<%-include('../../include/head.ejs', { pageTitle: 'All Products' })%>
+<%-include('../../include/head.ejs', { pageTitle: 'Sneakers - 718SNKRS' })%>
 <link rel="stylesheet" href="/styles/products.css">
 <!-- styles -->
 
@@ -20,7 +20,7 @@
 			<% if (allProducts.length>0) { %>
 				<ul id="productGrid">
 					<% for( const product of allProducts) { %>
-							<%-include('../../shared/productItem.ejs', {data: product})%>
+							<%-include('../../include/productItem.ejs', {data: product})%>
 					<% } %>
 				</ul>
 			<% } %>

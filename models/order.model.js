@@ -54,7 +54,7 @@ class Order {
     const order = await db
       .getDB()
       .collection("orders")
-      .findOne({ "_id": mongoOrderID })
+      .findOne({ _id: mongoOrderID });
 
     return this.transfromOrderDoc(order);
   }

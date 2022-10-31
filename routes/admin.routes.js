@@ -26,7 +26,7 @@ router.post(
 
 router.delete("/products/delete/:id", adminController.deleteProduct);
 
-router.get('/orders', adminController.getOrders);
+router.get("/orders", adminController.getOrders);
 
 router.patch("/orders/:id", adminController.updateOrder);
 
