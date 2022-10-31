@@ -60,8 +60,6 @@ class Order {
   }
 
   save() {
-    console.log('back')
-    console.log(this.orderId)
     if (this.orderId) {
       return db
         .getDB()

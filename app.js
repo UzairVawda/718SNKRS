@@ -11,6 +11,7 @@ const errorMiddle = require("./middle/error");
 const checkAuthMiddle = require("./middle/checkAuth");
 const protectRoutesMiddle = require("./middle/protectRoutes");
 const cartMiddle = require("./middle/cart");
+const cartPricesMiddle = require("./middle/updateCartPrices");
 
 //DATABASE
 const db = require("./data/database");
@@ -21,7 +22,8 @@ const authRouter = require("./routes/auth.routes");
 const productsRouter = require("./routes/products.routes");
 const adminRouter = require("./routes/admin.routes");
 const cartRouter = require('./routes/cart.routes')
-const ordersRouter = require('./routes/orders.routes')
+const ordersRouter = require('./routes/orders.routes');
+const updateCartPrices = require("./middle/updateCartPrices");
 
 const app = express();
 
@@ -39,6 +41,7 @@ app.use(expressSession(sessionConfig));
 app.use(csrf());
 
 app.use(cartMiddle);
+app.use(updateCartPrices)
 app.use(csrfMiddle);
 app.use(checkAuthMiddle);
 

@@ -26,7 +26,6 @@ function getAllOrders(req, res) {
 }
 
 async function createNewProduct(req, res, next) {
-  console.log(req.body)
   const product = new Product({ ...req.body, productImage: req.file.filename });
 
   try {

@@ -32,7 +32,6 @@ async function updateCartItemQuantity(event) {
   }
 
   const resData = await res.json();
-  console.log(resData);
   if (resData.updatedCartDate.newTotalQuantity === 0) {
     form.parentElement.parentElement.remove();
   } else {
