@@ -1,3 +1,4 @@
+const mongodb = require("mongodb");
 const db = require("../data/database");
 
 class Order {
@@ -16,17 +17,73 @@ class Order {
     }
     this.orderId = orderId;
   }
-  save(ß) {
+
+  static transfromOrderDoc(orderDoc) {
+    return new Order(
+      orderDoc.productData,
+      orderDoc.userData,
+      orderDoc.status,
+      orderDoc.date,
+      orderDoc._id
+    );
+  }
+
+  static transformOrderDocuments(orderDocs) {
+    return orderDocs.map(this.transfromOrderDoc);
+  }
+
+  static async findAllOrders() {
+    const orders = await db.getDB().collection("orders").find({}).toArray();
+    return this.transformOrderDocuments(orders);
+  }
+
+  static async findAllOrderForUser(userId) {
+    const uid = new mongodb.ObjectId(userId);
+    const order = await db
+      .getDB()
+      .collection("orders")
+      .find({ "userData._id": uid })
+      .sort({ _id: -1 })
+      .toArray();
+
+    return this.transformOrderDocuments(order);
+  }
+
+  static async findByOrderId(orderID) {
+    const mongoOrderID = new mongodb.ObjectId(orderID);
+    const order = await db
+      .getDB()
+      .collection("orders")
+      .find({ "productData._id": mongoOrderID })
+      .sort({ _id: -1 })
+      .toArray();
+
+    return this.transformOrderDocuments(order);
+  }
+
+  save() {
     if (this.orderId) {
+      const mongoOrderID = new mongodb.ObjectId(this.orderID);
+      return db
+        .getDB()
+        .collection("orders")
+        .updateOne(
+          { _id: mongoOrderID },
+          {
+            $set: {
+              status: this.status,
+            },
+          }
+        );
     } else {
       const newOrder = {
-				userData: this.userData,
-				productData: this.productData,
-				date: new Date()
-			}
-			return db.getDB().collection('orders').insertOne(newOrder)
-		};
-	}
+        userData: this.userData,
+        productData: this.productData,
+        date: new Date(),
+      };
+      return db.getDB().collection("orders").insertOne(newOrder);
+    }
+  }
 }
 
 module.exports = Order;
