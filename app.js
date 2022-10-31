@@ -12,6 +12,7 @@ const checkAuthMiddle = require("./middle/checkAuth");
 const protectRoutesMiddle = require("./middle/protectRoutes");
 const cartMiddle = require("./middle/cart");
 const cartPricesMiddle = require("./middle/updateCartPrices");
+const notFoundMiddle = require("./middle/notFound");
 
 //DATABASE
 const db = require("./data/database");
@@ -41,7 +42,7 @@ app.use(expressSession(sessionConfig));
 app.use(csrf());
 
 app.use(cartMiddle);
-app.use(updateCartPrices)
+app.use(cartPricesMiddle)
 app.use(csrfMiddle);
 app.use(checkAuthMiddle);
 
@@ -53,7 +54,7 @@ app.use("/cart", cartRouter);
 app.use(protectRoutesMiddle);
 app.use("/admin", adminRouter);
 app.use("/orders", ordersRouter);
-
+app.use(notFoundMiddle)
 app.use(errorMiddle); // error route
 
 db.connectToDB()

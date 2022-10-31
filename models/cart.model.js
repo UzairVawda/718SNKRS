@@ -4,14 +4,14 @@ class Cart {
   constructor(items = [], totalQuantity = 0, totalPrice = 0) {
     this.items = items;
     this.totalQuantity = totalQuantity;
-    this.cartTotalPrice = totalPrice;
+    this.totalPrice = totalPrice;
   }
 
   addItem(product) {
     const cartItem = {
       product: product,
       quantity: 1,
-      itemTotalPrice: product.price,
+      totalPrice: product.price,
     };
 
     for (let i = 0; i < this.items.length; i++) {
@@ -19,20 +19,20 @@ class Cart {
       console.log(item)
       if (item.product.id === product.id) {
         cartItem.quantity = item.quantity + 1;
-        cartItem.itemTotalPrice = item.itemTotalPrice + product.price;
+        cartItem.totalPrice = item.totalPrice + product.price;
         this.items[i] = cartItem;
 
         this.totalQuantity++;
-        console.log(this.cartTotalPrice)
-        this.cartTotalPrice += product.price;
-        console.log(this.cartTotalPrice)
+        console.log(this.totalPrice)
+        this.totalPrice += product.price;
+        console.log(this.totalPrice)
         return;
       }
     }
     
     this.items.push(cartItem);
     this.totalQuantity++;
-    this.cartTotalPrice += product.price;
+    this.totalPrice += product.price;
   }
 
   async updatePrices() {
@@ -55,7 +55,7 @@ class Cart {
       }
 
       cartItem.product = product;
-      cartItem.cartTotalPrice = cartItem.quantity * cartItem.product.price;
+      cartItem.totalPrice = cartItem.quantity * cartItem.product.price;
     }
 
     if (deleteableCartItemProductIds.length > 0) {
@@ -65,11 +65,11 @@ class Cart {
     }
 
     this.totalQuantity = 0;
-    this.cartTotalPrice = 0;
+    this.totalPrice = 0;
 
     for (const item of this.items) {
       this.totalQuantity += item.quantity;
-      this.cartTotalPrice += item.product.price;
+      this.totalPrice += item.product.price;
     }
   }
 

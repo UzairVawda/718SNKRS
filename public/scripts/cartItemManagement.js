@@ -1,5 +1,5 @@
 const updateItemQuantityBtns = document.querySelectorAll(".cartItemManagement");
-const cartBadge = document.querySelector("#navitems .badge");
+const cartBadges = document.querySelectorAll("#navitems .badge");
 const cartTotal = document.getElementById("cartTotal");
 
 async function updateCartItemQuantity(event) {
@@ -41,7 +41,10 @@ async function updateCartItemQuantity(event) {
     totalProductPrice.textContent =
       resData.updatedCartDate.updatedItemPrice.toFixed(2);
   }
-  cartBadge.textContent = resData.updatedCartDate.newTotalQuantity;
+
+  for (const badge of cartBadges) {
+    badge.textContent = resData.updatedCartDate.newTotalQuantity;
+  }
   cartTotal.textContent = resData.updatedCartDate.newTotalPrice.toFixed(2);
 }
 
