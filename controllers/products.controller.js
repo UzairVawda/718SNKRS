@@ -9,7 +9,7 @@ async function getAllProducts(req, res) {
 	}
 }
 
-async function getSpecificProduct(req, res) {
+async function getSpecificProduct(req, res, next) {
 	try {
 		const product = await Product.getOneProduct(req.params.id)		
 		res.render("customer/products/productDetails", {product: product});

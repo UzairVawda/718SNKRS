@@ -1,0 +1,31 @@
+<%-include('../../include/head.ejs', { pageTitle: 'All Orders' })%>
+<link rel="stylesheet" href="/styles/orders.css">
+<script src="/scripts/updateOrderStatus.js" defer></script>
+<!-- styles -->
+
+</head>
+
+<body>
+	<header>
+		<%-include('../../include/header.ejs')%>
+	</header>
+
+	<main>
+		<h1>718 Products</h1>
+		<section>
+			<section>
+				<% if (allOrders.length>0) { %>
+					<ol id="productGrid">
+						<% for( const order of allOrders) { %>
+								<%-include('../../include/orderItem.ejs', {order: order})%>
+						<% } %>
+					</ol>
+				<% } else { %>
+					<h2>NO ORDERS! PLACE ONE!</h2>
+				<% } %> 
+			</section>
+		</section>
+	
+	</main>
+
+<%-include('../../include/footer.ejs')%>

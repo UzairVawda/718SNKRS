@@ -21,9 +21,9 @@
 
   <% if (locals.isAdmin) { %>
     <section class="orderActions">
-      <form>
+      <form class="cartItemManagement" method="PATCH">
         <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
-        <input type="hidden" name="orderid" value="<%= order.id %>">
+        <input type="hidden" name="orderid" value="<%= order.orderId %>">
         <select name="status">
           <option value="pending" <% if (order.status === 'pending') { %>selected<% } %>>Pending</option>
           <option value="fulfilled" <% if (order.status === 'fulfilled') { %>selected<% } %>>Fulfilled</option>

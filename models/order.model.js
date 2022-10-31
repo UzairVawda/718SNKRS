@@ -54,21 +54,20 @@ class Order {
     const order = await db
       .getDB()
       .collection("orders")
-      .find({ "productData._id": mongoOrderID })
-      .sort({ _id: -1 })
-      .toArray();
+      .findOne({ "_id": mongoOrderID })
 
-    return this.transformOrderDocuments(order);
+    return this.transfromOrderDoc(order);
   }
 
   save() {
+    console.log('back')
+    console.log(this.orderId)
     if (this.orderId) {
-      const mongoOrderID = new mongodb.ObjectId(this.orderID);
       return db
         .getDB()
         .collection("orders")
         .updateOne(
-          { _id: mongoOrderID },
+          { _id: this.orderId },
           {
             $set: {
               status: this.status,
@@ -80,6 +79,7 @@ class Order {
         userData: this.userData,
         productData: this.productData,
         date: new Date(),
+        status: this.status,
       };
       return db.getDB().collection("orders").insertOne(newOrder);
     }
