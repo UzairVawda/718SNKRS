@@ -24,7 +24,6 @@ const productsRouter = require("./routes/products.routes");
 const adminRouter = require("./routes/admin.routes");
 const cartRouter = require('./routes/cart.routes')
 const ordersRouter = require('./routes/orders.routes');
-const updateCartPrices = require("./middle/updateCartPrices");
 
 const app = express();
 
@@ -42,7 +41,8 @@ app.use(expressSession(sessionConfig));
 app.use(csrf());
 
 app.use(cartMiddle);
-app.use(cartPricesMiddle)
+app.use(cartPricesMiddle);
+
 app.use(csrfMiddle);
 app.use(checkAuthMiddle);
 
@@ -51,9 +51,8 @@ app.use(baseRouter);
 app.use(authRouter);
 app.use(productsRouter);
 app.use("/cart", cartRouter);
-app.use(protectRoutesMiddle);
-app.use("/admin", adminRouter);
-app.use("/orders", ordersRouter);
+app.use("/admin", protectRoutesMiddle, adminRouter);
+app.use("/orders", protectRoutesMiddle, ordersRouter);
 app.use(notFoundMiddle)
 app.use(errorMiddle); // error route
 

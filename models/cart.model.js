@@ -16,16 +16,13 @@ class Cart {
 
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
-      console.log(item)
       if (item.product.id === product.id) {
         cartItem.quantity = item.quantity + 1;
         cartItem.totalPrice = item.totalPrice + product.price;
         this.items[i] = cartItem;
 
         this.totalQuantity++;
-        console.log(this.totalPrice)
         this.totalPrice += product.price;
-        console.log(this.totalPrice)
         return;
       }
     }
@@ -36,40 +33,40 @@ class Cart {
   }
 
   async updatePrices() {
-    const productsIds = this.items.map(function (item) {
+    const productIds = this.items.map(function (item) {
       return item.product.id;
     });
-
-    const products = await Product.findMultiple(productsIds);
-
-    const deleteableCartItemProductIds = [];
-
+  
+    const products = await Product.findMultiple(productIds);
+  
+    const deletableCartItemProductIds = [];
+  
     for (const cartItem of this.items) {
       const product = products.find(function (prod) {
         return prod.id === cartItem.product.id;
       });
-
+  
       if (!product) {
-        deleteableCartItemProductIds.push(cartItem.product.id);
+        deletableCartItemProductIds.push(cartItem.product.id);
         continue;
       }
-
+  
       cartItem.product = product;
       cartItem.totalPrice = cartItem.quantity * cartItem.product.price;
     }
-
-    if (deleteableCartItemProductIds.length > 0) {
+  
+    if (deletableCartItemProductIds.length > 0) {
       this.items = this.items.filter(function (item) {
-        return deleteableCartItemProductIds.indexOf(item.product.id) < 0;
+        return deletableCartItemProductIds.indexOf(item.product.id) < 0;
       });
     }
-
+  
     this.totalQuantity = 0;
     this.totalPrice = 0;
-
+  
     for (const item of this.items) {
-      this.totalQuantity += item.quantity;
-      this.totalPrice += item.product.price;
+      this.totalQuantity = this.totalQuantity + item.quantity;
+      this.totalPrice = this.totalPrice + item.totalPrice;
     }
   }
 

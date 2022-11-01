@@ -1,7 +1,6 @@
 const Product = require("../models/product.model");
 
 function getCart(req, res) {
-  console.log(res.locals.cart)
   res.render("customer/cart/cart");
 }
 
@@ -12,10 +11,11 @@ async function addCartItem(req, res) {
   } catch (error) {
     next(error);
   }
+  
   const cart = res.locals.cart;
   cart.addItem(product);
   req.session.cart = cart;
-  console.log(req.session.cart)
+
   res.status(201).json({
     message: "Item Added",
     totalItems: res.locals.cart.totalQuantity,

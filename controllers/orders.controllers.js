@@ -22,7 +22,7 @@ async function addOrder(req, res, next) {
   }
   try {
     const order = new Order(cart, userDoc);
-    order.save();
+    await order.save();
   } catch (error) {
     next(error);
     return;
