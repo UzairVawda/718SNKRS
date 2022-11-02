@@ -23,13 +23,17 @@
 		</section>
 		<section id="cartDetails">
 			<p>Total: $<span id="cartTotal"><%= locals.cart.totalPrice.toFixed(3) %></span></p>
-			<% if (locals.isAuth) { %> 
+			<% if (locals.isAuth && locals.cart.totalQuantity > 0) { %> 
 				<form action="/orders" method="POST">
 					<input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
 					<button class="btn">BUY</button>
 				</form>
-			<% } else { %> 
+			<% } else if (locals.isAuth && locals.cart.totalQuantity < 0) { %> 
+				<h2>add stuff to cart!</h2>
+			<% } else if (!locals.isAuth) { %> 
 				<a class="btn" href="/login">Login to purchase!</a>
+			<% } else if (locals.cart.totalQuantity < 0) { %> 
+				<p>add items to cart</p>
 			<% } %> 
 		</section>
 	</main>
